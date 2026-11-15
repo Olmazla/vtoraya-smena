@@ -33,7 +33,7 @@ nav.main{display:flex;gap:26px;font-size:14px}
 nav.main a{text-decoration:none}nav.main a:hover{text-decoration:underline;text-underline-offset:4px}
 .hd .right{margin-left:auto;display:flex;align-items:center;gap:18px;font-size:14px}
 .burger{display:none}
-@media(max-width:900px){nav.main{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:4px 16px 12px}
+@media(max-width:1080px){nav.main{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:4px 16px 12px}
  nav.main.open{display:flex}nav.main a{padding:12px 0;border-bottom:1px solid var(--line)}
  .burger{display:block;font-size:14px}.hd{gap:16px}.hd .contact-top{display:none}.logo{font-size:15px;letter-spacing:.1em}}
 .hero{position:relative;height:min(78vh,640px);min-height:420px;background:#2a2a2a url(img/hero.jpg) center/cover;color:#fff;display:flex;align-items:flex-end}
@@ -81,23 +81,23 @@ select.s{border:1px solid var(--line);background:#fff;padding:8px 10px;font-size
 .mats b{display:block;font-weight:600;font-size:14px;margin-bottom:2px}
 .mats p{font-size:14px;color:var(--mute)}
 @media(max-width:800px){.about{grid-template-columns:1fr}.mats{grid-template-columns:1fr}}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
-.steps div{padding:20px 20px 0 0;font-size:14px}
-.steps b{display:block;font-weight:600;margin-bottom:4px}
-.steps i{font-style:normal;color:var(--mute);font-size:13px;display:block;margin-bottom:8px}
-@media(max-width:800px){.steps{grid-template-columns:1fr 1fr;gap:10px}}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-@media(max-width:800px){.cols{grid-template-columns:1fr;gap:32px}}
-.cols>*{min-width:0}
-.cols h3{font-size:18px;margin-bottom:14px}
-table.t{width:100%;border-collapse:collapse;font-size:14px}
-table.t th,table.t td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
-table.t th{font-weight:500;color:var(--mute);font-size:13px}
-.tw{overflow-x:auto}
-.note{font-size:14px;background:var(--soft);padding:14px 16px;margin-top:16px}
-ul.l{padding-left:18px;font-size:14px}ul.l li{margin:8px 0}
-details{border-bottom:1px solid var(--line);padding:16px 0}
-.home details:first-of-type{border-top:1px solid var(--line)}
+.band{background:var(--soft)}
+.cards{display:grid;gap:16px}
+.c4{grid-template-columns:repeat(4,1fr)}.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.c4,.c3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.c3{grid-template-columns:1fr}.cards{gap:10px}.card{padding:16px 14px 18px}.card .num{font-size:28px;margin-bottom:12px}}
+.card{background:#fff;border:1px solid var(--line);padding:22px 22px 24px;font-size:14px;color:var(--mute)}
+.band .card{border-color:#fff}
+#how .card,#returns .card{background:var(--soft);border-color:var(--soft)}
+.card h3{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.card .num{display:block;font-size:34px;line-height:1;font-weight:500;color:var(--ink);margin-bottom:18px}
+.card .big{display:block;font-size:22px;font-weight:600;color:var(--ink);margin:10px 0 2px}
+.card .tag{display:inline-block;margin-top:10px;font-size:12px;color:var(--ok);border:1px solid currentColor;padding:2px 8px}
+.sub{font-size:18px;margin:0 0 14px}
+.after{font-size:14px;color:var(--mute);margin-top:14px}
+.after b{color:var(--ink);font-weight:500}
+details{border-bottom:1px solid #ddd;padding:16px 0}
+.home details:first-of-type{border-top:1px solid #ddd}
 summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--mute)}details[open] summary::after{content:"–"}
@@ -205,6 +205,7 @@ aside.sum h3{font-size:15px;font-weight:600;margin-bottom:12px}
     <nav class="main" id="nav">
       <a href="#catalog" data-go="home">Каталог</a>
       <a href="#about" data-go="home">О материалах</a>
+      <a href="#how" data-go="home">Как заказать</a>
       <a href="#delivery" data-go="home">Доставка и оплата</a>
       <a href="#returns" data-go="home">Обмен и возврат</a>
       <a href="#contacts" data-go="home">Контакты</a>
@@ -270,65 +271,50 @@ aside.sum h3{font-size:15px;font-weight:600;margin-bottom:12px}
 
   <section id="how">
     <div class="wrap">
-      <div class="sh"><h2>Как заказать</h2></div>
-      <div class="steps">
-        <div><i>01</i><b>Выберите вещь</b>Цвет и размер – в карточке товара, там же видно наличие.</div>
-        <div><i>02</i><b>Положите в корзину</b>Корзина покажет сумму и сколько осталось до бесплатной доставки.</div>
-        <div><i>03</i><b>Оформите заказ</b>Контакты, способ доставки и оплаты. Итог виден до подтверждения.</div>
-        <div><i>04</i><b>Получите посылку</b>Перед отправкой пришлём фото вашего экземпляра и трек-номер.</div>
+      <div class="sh"><h2>Как заказать</h2><p>Регистрироваться не нужно.</p></div>
+      <div class="cards c4">
+        <div class="card"><span class="num">1</span><h3>Выберите вещь</h3>В карточке выберите цвет и размер. Там же видно, сколько штук осталось.</div>
+        <div class="card"><span class="num">2</span><h3>Положите в корзину</h3>Корзина покажет сумму и сколько не хватает до бесплатной доставки.</div>
+        <div class="card"><span class="num">3</span><h3>Оформите заказ</h3>Имя, телефон, доставка и оплата. Итог видно до подтверждения.</div>
+        <div class="card"><span class="num">4</span><h3>Получите посылку</h3>Перед отправкой пришлём фото вашей вещи и трек-номер.</div>
       </div>
     </div>
   </section>
 
-  <section id="delivery" style="padding-top:0">
+  <section id="delivery" class="band">
     <div class="wrap">
-      <div class="sh"><h2>Доставка и оплата</h2><p>Отправляем из Санкт-Петербурга. Стоимость доставки одинаковая для любого города России.</p></div>
-      <div class="cols">
-        <div>
-          <h3>Доставка</h3>
-          <div class="tw"><table class="t">
-            <tr><th>Способ</th><th>Срок в пути</th><th>Стоимость</th></tr>
-            <tr><td>СДЭК, пункт выдачи</td><td>2–6 дней</td><td>350&nbsp;₽, от 5&nbsp;000&nbsp;₽ бесплатно</td></tr>
-            <tr><td>СДЭК, курьер</td><td>2–6 дней</td><td>590&nbsp;₽</td></tr>
-            <tr><td>Почта России</td><td>5–12 дней</td><td>300&nbsp;₽</td></tr>
-            <tr><td>Самовывоз из мастерской, м. Василеостровская</td><td>со следующего рабочего дня</td><td>бесплатно</td></tr>
-          </table></div>
-          <div class="note">Вещи в наличии передаём в доставку за 1–2 рабочих дня. Вещи под заказ шьём 10 рабочих дней после оплаты.</div>
-        </div>
-        <div>
-          <h3>Оплата</h3>
-          <div class="tw"><table class="t">
-            <tr><th>Способ</th><th>Когда</th></tr>
-            <tr><td>Картой или по СБП онлайн</td><td>Сразу после оформления, по ссылке на оплату</td></tr>
-            <tr><td>При получении в пункте СДЭК</td><td>При получении, комиссия перевозчика 3&nbsp;% входит в итог заказа</td></tr>
-            <tr><td>При самовывозе</td><td>В мастерской, картой или по СБП</td></tr>
-          </table></div>
-          <div class="note">Заказ с вещью под заказ оплачивается только онлайн и только после подтверждения: в течение рабочего дня мастер проверит, хватает ли материала, и пришлёт ссылку на оплату.</div>
-        </div>
+      <div class="sh"><h2>Доставка и оплата</h2><p>Цена доставки одна для всей России.</p></div>
+      <h3 class="sub">Доставка</h3>
+      <div class="cards c4">
+        <div class="card"><h3>СДЭК, пункт выдачи</h3>2–6 дней<span class="big">350&nbsp;₽</span><span class="tag">бесплатно от 5&nbsp;000&nbsp;₽</span></div>
+        <div class="card"><h3>СДЭК, курьер</h3>2–6 дней<span class="big">590&nbsp;₽</span></div>
+        <div class="card"><h3>Почта России</h3>5–12 дней<span class="big">300&nbsp;₽</span></div>
+        <div class="card"><h3>Самовывоз</h3>м. Василеостровская, Пн–Сб 11–20<span class="big">0&nbsp;₽</span></div>
       </div>
+      <p class="after"><b>Когда отправим:</b> вещи в наличии – через 1–2 рабочих дня, под заказ – через 10 рабочих дней после оплаты.</p>
+      <h3 class="sub" style="margin-top:40px">Оплата</h3>
+      <div class="cards c3">
+        <div class="card"><h3>Онлайн</h3>Картой или по СБП. Ссылка на оплату придёт сразу после заказа.</div>
+        <div class="card"><h3>При получении</h3>В пункте СДЭК картой или наличными. СДЭК берёт 3&nbsp;% комиссии.</div>
+        <div class="card"><h3>В мастерской</h3>При самовывозе, картой или по СБП.</div>
+      </div>
+      <p class="after"><b>Вещи под заказ</b> оплачиваются только онлайн – после того, как мастер подтвердит, что материал есть.</p>
     </div>
   </section>
 
-  <section id="returns" style="padding-top:0">
+  <section id="returns">
     <div class="wrap">
       <div class="sh"><h2>Обмен и возврат</h2></div>
-      <div class="cols">
-        <div><h3>До получения</h3><ul class="l">
-          <li>Изменить или отменить заказ можно бесплатно, пока он не передан в доставку. Напишите в Telegram или на почту и укажите номер заказа.</li>
-          <li>Заказ под заказ отменяется бесплатно до начала пошива. После начала пошива отмена невозможна, но после получения действует обычный возврат.</li>
-          <li>Если заказ уже оплачен, деньги вернём на ту же карту в течение 3 рабочих дней.</li>
-        </ul></div>
-        <div><h3>После получения</h3><ul class="l">
-          <li>14 дней на возврат или обмен без объяснения причин, если вещь не носили и сохранили бирку.</li>
-          <li>Обратную доставку оплачивает покупатель, деньги возвращаем в течение 10 дней после получения вещи.</li>
-          <li>Брак или разошедшийся шов в течение года – бесплатный ремонт или замена, доставку в обе стороны оплачиваем мы.</li>
-          <li>Оттенок и потёртости материала у каждой вещи свои. Фото вашего экземпляра присылаем до отправки, и от него можно отказаться без оплаты.</li>
-        </ul></div>
+      <div class="cards c4">
+        <div class="card"><h3>Передумали до отправки</h3>Отменим бесплатно. Напишите номер заказа в Telegram или на почту – деньги вернём за 3 рабочих дня.</div>
+        <div class="card"><h3>14 дней на возврат</h3>Если вещь не носили и бирка на месте. Обратная доставка за ваш счёт, деньги вернём за 10 дней.</div>
+        <div class="card"><h3>Гарантия 1 год</h3>Разошёлся шов или сломалась фурнитура – починим или заменим. Доставка за наш счёт.</div>
+        <div class="card"><h3>Вещь под заказ</h3>Отменить можно до начала пошива. Потом – обычный возврат после получения.</div>
       </div>
     </div>
   </section>
 
-  <section id="faq" style="padding-top:0">
+  <section id="faq" class="band">
     <div class="wrap">
       <div class="sh"><h2>Вопросы</h2></div>
       <details><summary>Материал не пахнет?</summary><p>Баннеры и тенты моем щелочным средством и сушим, камеры используем изнанкой наружу. Запаха резины нет, вещь не пачкает руки и одежду.</p></details>
@@ -338,13 +324,13 @@ aside.sum h3{font-size:15px;font-weight:600;margin-bottom:12px}
     </div>
   </section>
 
-  <section id="contacts" style="padding-top:0">
+  <section id="contacts">
     <div class="wrap">
-      <div class="sh"><h2>Контакты</h2><p>Отвечаем ежедневно с 10:00 до 20:00 по Москве.</p></div>
-      <div class="contacts">
-        <div><span class="mute">Telegram</span><b><a href="https://t.me/vtoraya_smena_bags" target="_blank" rel="noopener">@vtoraya_smena_bags</a></b></div>
-        <div><span class="mute">Почта</span><b><a href="mailto:hello@vtoraya-smena.ru">hello@vtoraya-smena.ru</a></b></div>
-        <div><span class="mute">Мастерская и самовывоз</span><b>Санкт-Петербург, м. Василеостровская</b><span class="mute">Пн–Сб 11:00–20:00, адрес пришлём в подтверждении заказа</span></div>
+      <div class="sh"><h2>Контакты</h2><p>Отвечаем каждый день с 10:00 до 20:00 по Москве.</p></div>
+      <div class="cards c3">
+        <div class="card">Telegram<b style="display:block;color:var(--ink);font-size:16px;font-weight:600;margin-top:4px"><a href="https://t.me/vtoraya_smena_bags" target="_blank" rel="noopener">@vtoraya_smena_bags</a></b></div>
+        <div class="card">Почта<b style="display:block;color:var(--ink);font-size:16px;font-weight:600;margin-top:4px"><a href="mailto:hello@vtoraya-smena.ru">hello@vtoraya-smena.ru</a></b></div>
+        <div class="card">Мастерская<b style="display:block;color:var(--ink);font-size:16px;font-weight:600;margin-top:4px">СПб, м. Василеостровская</b>Пн–Сб 11:00–20:00, точный адрес – в письме о заказе</div>
       </div>
     </div>
   </section>
